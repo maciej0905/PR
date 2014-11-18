@@ -1,0 +1,64 @@
+/* Objective function */
+min: T;
+/* Variable bounds */
+T>T1;
+T>T2;
+T>T3;
+T>T4;
+T>T5;
+V=D1+Dp;
+Dp=D2+D23+D25+D34+D43+D45+D54;
+Dp<V*x12;
+D23<V*x23;
+D25<V*x25;
+D34<V*x34;
+D43<V-V*x34;
+D45<V*x45;
+D54<V-V*x45;
+T1>Tk12+To1;
+T2>Tk12+Tk23+Tk25+To2;
+To1=A1*D1;
+To2=A2*D2;
+To3.1=A3*D3.1;
+To3.2=A3*D3.2;
+To3=To3.1+To3.2;
+To4.1=A4*D4.1;
+To4.2=A4*D4.2;
+To4=To4.1+To4.2;
+To5.1=A5*D5.1;
+To5.2=A5*D5.2;
+To5=To5.1+To5.2;
+D5.1+D5.2=D25+D45;
+D5.1<D25; 
+D4.1+D4.2=D34+D54;
+D4.1<D34; 
+D4.1<D54; 
+D3.1+D3.2=D23+D43;
+D3.1<D23; 
+Tk12=C1*Dp;
+Tk23>C2*D23+C2*D34+C2*D45-M+M*x23;
+Tk25>C3*D25+C3*D54+C3*D43-M+M*x25;
+Tk3443=C4*D34+C4*D43+C4*D45;
+Tk4554=C5*D45+C5*D54+C5*D43;
+
+T3>Tk12+trk23+Tk3443+To3+trk25-M*x;
+T4>Tk12+trk23+Tk3443+Tk4554+To4+trk25-M*x;
+T5>Tk12+trk23+Tk3443+Tk4554+To5+trk25-M*x;
+T3>Tk12+trk25+Tk4554+Tk3443+To3+trk23-M+M*x;
+T4>Tk12+trk25+Tk4554+Tk3443+To4+trk23-M+M*x;
+T5>Tk12+trk25+Tk4554+To5+trk23-M+M*x;
+
+trk23>Tk12-M*x; 
+trk25>Tk12-M+M*x;
+Tk23>1+Tk25-M*x; 
+Tk25>1+Tk23-M+M*x;
+Tk23<M-M*x; 
+Tk25<M*x;
+x25>1-M+M*x; 
+x23>1-M*x;   
+x23<0-M+M*x; 
+x25<0-M*x; 
+
+int D1,D2,D23,D25,D34,D43,D45,D54, D3.1, D3.2, D4.1, D4.2, D5.1, D5.2;
+int Dp;
+bin x12, x23, x25, x34, x45, x;
